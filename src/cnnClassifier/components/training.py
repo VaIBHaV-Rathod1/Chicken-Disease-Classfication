@@ -1,5 +1,6 @@
 from cnnClassifier.entity.config_entity import TrainingConfig
 import tensorflow as tf
+
 from pathlib import Path
 
 
@@ -8,9 +9,14 @@ class Training:
         self.config = config
     
     def get_base_model(self):
-        self.model = tf.keras.models.load_model(
-            self.config.updated_base_model_path
+        self.model = ...  # build or load base model
+        
+        # Always recompile with a fresh optimizer
+        self.model.compile(
+            loss="categorical_crossentropy",   # or sparse_categorical_crossentropy
+            metrics=["accuracy"]
         )
+
     
     def train_valid_generator(self):
 
